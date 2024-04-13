@@ -20,7 +20,7 @@ led = machine.Pin(LED_PIN, machine.Pin.OUT)
 
 # Configuracion local
 config['server'] = BROKER
-config['port'] = 1883
+#config['port'] = 1883 # utilizara cuando config['ssl'] = False
 config['ssid'] = SSID
 config['wifi_pw'] = password
 
@@ -161,7 +161,7 @@ async def main(client):
 config['subs_cb'] = sub_cb
 config['connect_coro'] = conn_han
 config['wifi_coro'] = wifi_han
-config['ssl'] = False #True
+config['ssl'] = True
 
 # Verificar y cargar parámetros de la base de datos
 load_params_from_db()
