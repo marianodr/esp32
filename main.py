@@ -64,8 +64,8 @@ def sub_cb(topic, msg, retained):
 
     value = json.loads(msg.decode())[topic]
 
-    #if topic != 'destello':
-    #    update_btree(topic, value)
+    if topic != 'destello':
+        update_btree(topic, value)
 
     if topic == "setpoint":
         setpoint = value
