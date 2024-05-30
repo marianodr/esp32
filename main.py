@@ -2,7 +2,7 @@ from mqtt_as import MQTTClient
 from mqtt_local import config
 import uasyncio as asyncio
 import dht, machine
-from settings import SSID, password, BROKER
+from settings import SSID, PASS, BROKER, USR_MQTT, PASS_MQTT, PORT
 import json
 import btree
 
@@ -22,7 +22,11 @@ led = machine.Pin(LED_PIN, machine.Pin.OUT)
 config['server'] = BROKER
 #config['port'] = 1883 # utilizara cuando config['ssl'] = False
 config['ssid'] = SSID
-config['wifi_pw'] = password
+config['wifi_pw'] = PASS
+
+config['port'] = PORT
+config['user'] = USR_MQTT
+config['password'] = PASS_MQTT
 
 # Función para verificar la existencia de la base de datos y cargar los valores si existe
 def load_params_from_db():
@@ -60,8 +64,8 @@ def sub_cb(topic, msg, retained):
 
     value = json.loads(msg.decode())[topic]
 
-    if topic != 'destello':
-        update_btree(topic, value)
+    #if topic != 'destello':
+    #    update_btree(topic, value)
 
     if topic == "setpoint":
         setpoint = value
